@@ -19,21 +19,19 @@ function clickHandler() {
 
             if (sellingPrice > costPrice) {
                 result = calculate(sellingPrice, costPrice);
-                output.style.color = "green";
                 output.innerText = "YAYY! Your profit is " + result[0] + " and profit percentage is " + result[1] + "%";
 
             } else if (costPrice > sellingPrice) {
                 result = calculate(costPrice, sellingPrice);
                 output.innerText = "Whoops! Your loss is " + result[0] + " and loss percentage is " + result[1] + "%";
-                output.style.color = "red";
+
             }
         } else {
-            output.style.color = "red";
+        
             output.innerText = "Please enter positive values";
         }
 
     } else {
-        output.style.color = "black";
         output.innerText = "Please enter all the values";
     }
 
@@ -44,7 +42,14 @@ function calculate(priceA, priceB) {
     var profitOrLossStocks = profitOrLoss * numOfStocks.value;
     percentage = (profitOrLoss / initialPrice.value) * 100;
 
-    return [profitOrLossStocks, percentage.toFixed(2)];
+    if(profitOrLossStocks === 0){
+        output.innerText = "Quantity can't be 0"
+    }else{
+        return [profitOrLossStocks, percentage.toFixed(2)];
+
+    }
+
+    
 
 }
 
